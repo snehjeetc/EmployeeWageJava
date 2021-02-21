@@ -9,6 +9,11 @@ public class Employee {
 	static int FULL_DAY;
 	static int PART_TIME_HR;
     
+	static int TOT_WORKDAYS_LIMIT;
+	static int TOT_WORKING_HRS_LIMIT;
+
+	int hrsWorked;
+	int totDaysWorked;
 	int dailyPayment;
     int salary;
 
@@ -17,10 +22,14 @@ public class Employee {
 		PART_TIME_HR=8;
 		
 		WAGE_PER_HR=20;
+		TOT_WORKDAYS_LIMIT=20;
+		TOT_WORKING_HRS_LIMIT=100;
 	}
 	
 	Employee(){
 		dailyPayment=0;
+		hrsWorked=0;
+		totDaysWorked=0;
         salary=0;
 	}
 
@@ -31,16 +40,29 @@ public class Employee {
 		case IS_FULL_TIME:	
 				System.out.println("Employee is present");
 				dailyPayment = FULL_DAY * WAGE_PER_HR;
+                hrsWorked += FULL_DAY;
+                totDaysWorked++;
 				break;
 		case IS_PART_TIME:
 				System.out.println("Employee is present");
 				dailyPayment = PART_TIME_HR* WAGE_PER_HR;
+                hrsWorked += PART_TIME_HR;
+                totDaysWorked++;
 				break;
 		default:
 				System.out.println("Employee is absent");
+                dailyPayment=0;
 				break;
 		}
         salary += dailyPayment;
 		System.out.println("Daily Payment: " + dailyPayment);
+    }
+    
+    public boolean workingDayExceeded(){
+        return totDaysWorked >= TOT_WORKDAYS_LIMIT;  
+    }
+
+    public boolean workingHrExceeded(){
+        return hrsWorked >= TOT_WORKING_HRS_LIMIT;
     }
 }

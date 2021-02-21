@@ -7,7 +7,7 @@ public class EmpMain {
 				Employee e = new Employee();
 				
 				System.out.println("Welcome to Employee Wage Computation Program");
-                for(int i=0; i<=30; i++)
+                while(!e.workingDayExceeded() && !e.workingHrExceeded())    
                     e.calculateDailyWage();
                 System.out.println("Monthly wage= " + e.salary);
 	}
