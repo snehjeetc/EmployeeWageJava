@@ -10,7 +10,7 @@ public class Employee {
 	static int PART_TIME_HR;
     
 	int dailyPayment;
-	
+
 	static {
 		FULL_DAY=8;
 		PART_TIME_HR=8;
@@ -28,11 +28,11 @@ public class Employee {
 		switch(empCheck) {
 		case IS_FULL_TIME:	
 				System.out.println("Employee is present");
-				dailyPayment += FULL_DAY * WAGE_PER_HR;
+				dailyPayment = FULL_DAY * WAGE_PER_HR;
 				break;
 		case IS_PART_TIME:
 				System.out.println("Employee is present");
-				dailyPayment += PART_TIME_HR* WAGE_PER_HR;
+				dailyPayment = PART_TIME_HR* WAGE_PER_HR;
 				break;
 		default:
 				System.out.println("Employee is absent");
