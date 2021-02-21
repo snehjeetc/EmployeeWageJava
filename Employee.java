@@ -38,9 +38,10 @@ public class Employee {
 				break;
 		default:
 				System.out.println("Employee is absent");
+				dailyPayment = 0;
 				break;
 		}
-        salary += dailyPayment;
+        	salary += dailyPayment;
 		System.out.println("Daily Payment: " + dailyPayment);
     }
 }
