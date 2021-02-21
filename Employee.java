@@ -51,10 +51,14 @@ public class Employee {
 				break;
 		default:
 				System.out.println("Employee is absent");
+<<<<<<< HEAD
                 dailyPayment=0;
+=======
+				dailyPayment = 0;
+>>>>>>> cc8d5fc621d77218092b3bcd4daf2d2b1f31c657
 				break;
 		}
-        salary += dailyPayment;
+        	salary += dailyPayment;
 		System.out.println("Daily Payment: " + dailyPayment);
     }
     
