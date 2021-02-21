@@ -10,6 +10,7 @@ public class Employee {
 	static int PART_TIME_HR;
     
 	int dailyPayment;
+    int salary;
 
 	static {
 		FULL_DAY=8;
@@ -20,6 +21,7 @@ public class Employee {
 	
 	Employee(){
 		dailyPayment=0;
+        salary=0;
 	}
 
 	public void calculateDailyWage() {
@@ -38,6 +40,7 @@ public class Employee {
 				System.out.println("Employee is absent");
 				break;
 		}
+        salary += dailyPayment;
 		System.out.println("Daily Payment: " + dailyPayment);
     }
 }

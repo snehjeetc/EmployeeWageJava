@@ -7,7 +7,9 @@ public class EmpMain {
 				Employee e = new Employee();
 				
 				System.out.println("Welcome to Employee Wage Computation Program");
-                e.calculateDailyWage();
+                for(int i=0; i<=30; i++)
+                    e.calculateDailyWage();
+                System.out.println("Monthly wage= " + e.salary);
 	}
 
 }
