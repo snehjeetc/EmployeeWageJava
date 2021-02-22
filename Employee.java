@@ -2,8 +2,8 @@ package com.employee;
 import java.util.Random;
 
 public class Employee {
-	static final short IS_FULL_TIME=1;
-	static final short IS_PART_TIME=2;
+	static final short IS_FULL_TIME = 1;
+	static final short IS_PART_TIME = 2;
 	
 	static int WAGE_PER_HR;
 	static int FULL_DAY;
@@ -18,19 +18,19 @@ public class Employee {
     int salary;
 
 	static {
-		FULL_DAY=8;
-		PART_TIME_HR=8;
+		FULL_DAY = 8;
+		PART_TIME_HR = 4;
 		
-		WAGE_PER_HR=20;
-		TOT_WORKDAYS_LIMIT=20;
-		TOT_WORKING_HRS_LIMIT=100;
+		WAGE_PER_HR = 20;
+		TOT_WORKDAYS_LIMIT = 20;
+		TOT_WORKING_HRS_LIMIT = 100;
 	}
 	
 	Employee(){
-		dailyPayment=0;
-		hrsWorked=0;
-		totDaysWorked=0;
-        salary=0;
+		dailyPayment = 0;
+		hrsWorked = 0;
+		totDaysWorked = 0;
+        salary = 0;
 	}
 
 	public void calculateDailyWage() {
