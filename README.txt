@@ -1,4 +1,7 @@
 Employee Wage problem statement
+Checks whether an employee is present or not
+and calculates the salary based on whether he works
+part time or full time.
 
 1.) Compiling in terminal :
 	javac -d . *.java 
