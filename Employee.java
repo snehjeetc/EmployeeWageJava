@@ -4,7 +4,7 @@ import java.util.Random;
 public class Employee {
 	static final short IS_FULL_TIME = 1;
 	static final short IS_PART_TIME = 2;
-    static final short IS_PRESENT = 1;
+    	static final short IS_PRESENT = 1;
 	
 	int WAGE_PER_HR;
 	int FULL_DAY;
@@ -16,22 +16,22 @@ public class Employee {
 	int hrsWorked;
 	int totDaysWorked;
 	int dailyPayment;
-    int salary;
+    	int salary;
 	
 	Employee(int wagePerHr, int FullDayHr, int PartTimeHr, int workDaysLimit, 
             int workHrsLimit){
 		dailyPayment = 0;
 		hrsWorked = 0;
 		totDaysWorked = 0;
-        salary = 0;
-        WAGE_PER_HR = wagePerHr;
-        FULL_DAY = FullDayHr;
-        PART_TIME_HR = PartTimeHr;
-        TOT_WORKDAYS_LIMIT = workDaysLimit;
-        TOT_WORKING_HRS_LIMIT = workHrsLimit;
+        	salary = 0;
+        	WAGE_PER_HR = wagePerHr;
+        	FULL_DAY = FullDayHr;
+        	PART_TIME_HR = PartTimeHr;
+        	TOT_WORKDAYS_LIMIT = workDaysLimit;
+        	TOT_WORKING_HRS_LIMIT = workHrsLimit;
 	}
     
-    public int checkAttendance() {
+    	public int checkAttendance() {
 		short empCheck = (short)((Math.random() * 10)%2);
 		if(empCheck == IS_PRESENT)
 			return 1;
