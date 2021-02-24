@@ -2,21 +2,23 @@ package com.employee;
 import java.util.Random;
 
 public class Employee {
-	static final short IS_FULL_TIME = 1;
-	static final short IS_PART_TIME = 2;
-    	static final short IS_PRESENT = 1;
-	
-	int WAGE_PER_HR;
-	int FULL_DAY;
-	int PART_TIME_HR;
-    
-	int TOT_WORKDAYS_LIMIT;
-	int TOT_WORKING_HRS_LIMIT;
+	public static final short IS_FULL_TIME = 1;
+	public static final short IS_PART_TIME = 2;
+    public static final short IS_PRESENT = 1;
 
-	int hrsWorked;
-	int totDaysWorked;
-	int dailyPayment;
-    	int salary;
+	
+	private int WAGE_PER_HR;
+	private int FULL_DAY;
+	private int PART_TIME_HR;
+    
+	private int TOT_WORKDAYS_LIMIT;
+	private int TOT_WORKING_HRS_LIMIT;
+
+	private int hrsWorked;
+	private int totDaysWorked;
+	private int dailyPayment;
+    private int salary;
+    
 	
 	Employee(int wagePerHr, int FullDayHr, int PartTimeHr, int workDaysLimit, 
             int workHrsLimit){
@@ -46,13 +48,11 @@ public class Employee {
             int jobType = rand.nextInt(2) + 1;
 		    switch(jobType) {
 		        case IS_FULL_TIME:	
-				        System.out.println("Employee is present");
 				        dailyPayment = FULL_DAY * WAGE_PER_HR;
                         hrsWorked += FULL_DAY;
                         totDaysWorked++;
 				        break;
 		        case IS_PART_TIME:
-				        System.out.println("Employee is present");
 				        dailyPayment = PART_TIME_HR* WAGE_PER_HR;
                         hrsWorked += PART_TIME_HR;
                         totDaysWorked++;
@@ -61,11 +61,9 @@ public class Employee {
 		        }
         }
         else{
-            System.out.println("Employee is absent");
             dailyPayment = 0;
         }
         	salary += dailyPayment;
-		System.out.println("Daily Payment: " + dailyPayment);
     }
     
     public boolean workingDayExceeded(){
@@ -75,4 +73,14 @@ public class Employee {
     public boolean workingHrExceeded(){
         return hrsWorked >= TOT_WORKING_HRS_LIMIT;
     }
+    public int getTotWorkingHrs(){
+        return hrsWorked;
+    }
+    public int getTotWorkingDays(){
+        return totDaysWorked;
+    }
+    public int getSalary(){
+        return salary();
+    }
+
 }
