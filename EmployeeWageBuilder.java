@@ -9,6 +9,7 @@ public class EmployeeWageBuilder {
     private static int capacity = 0;
     //index-> represents the next position where we have to place our object
     private static int index = -1;
+    //index=-1 -> represents the list hasn't been created yet
     private static String[] companyNamesList;
     private static Employee[] companyEmployeesList; 
     
