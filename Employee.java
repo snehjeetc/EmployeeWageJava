@@ -1,12 +1,6 @@
 package com.employee;
-import java.util.Random;
 
-public class Employee {
-	public static final short IS_FULL_TIME = 1;
-	public static final short IS_PART_TIME = 2;
-    public static final short IS_PRESENT = 1;
-
-	
+public class Employee{	
 	private int WAGE_PER_HR;
 	private int FULL_DAY;
 	private int PART_TIME_HR;
@@ -16,15 +10,13 @@ public class Employee {
 
 	private int hrsWorked;
 	private int totDaysWorked;
-	private int dailyPayment;
     private int salary;
     
 	
 	Employee(int wagePerHr, int FullDayHr, int PartTimeHr, int workDaysLimit, 
             int workHrsLimit){
-		dailyPayment = 0;
-		hrsWorked = 0;
-		totDaysWorked = 0;
+		    hrsWorked = 0;
+		    totDaysWorked = 0;
         	salary = 0;
         	WAGE_PER_HR = wagePerHr;
         	FULL_DAY = FullDayHr;
@@ -32,40 +24,7 @@ public class Employee {
         	TOT_WORKDAYS_LIMIT = workDaysLimit;
         	TOT_WORKING_HRS_LIMIT = workHrsLimit;
 	}
-    
-    	public int checkAttendance() {
-		short empCheck = (short)((Math.random() * 10)%2);
-		if(empCheck == IS_PRESENT)
-			return 1;
-		else
-			return 0;
-	}
-
-	public void calculateDailyWage() {
-        Random rand = new Random();
-		int empCheck= checkAttendance();
-        if(empCheck == 1){
-            int jobType = rand.nextInt(2) + 1;
-		    switch(jobType) {
-		        case IS_FULL_TIME:	
-				        dailyPayment = FULL_DAY * WAGE_PER_HR;
-                        hrsWorked += FULL_DAY;
-                        totDaysWorked++;
-				        break;
-		        case IS_PART_TIME:
-				        dailyPayment = PART_TIME_HR* WAGE_PER_HR;
-                        hrsWorked += PART_TIME_HR;
-                        totDaysWorked++;
-				        break;
-		
-		        }
-        }
-        else{
-            dailyPayment = 0;
-        }
-        	salary += dailyPayment;
-    }
-    
+        
     public boolean workingDayExceeded(){
         return totDaysWorked >= TOT_WORKDAYS_LIMIT;  
     }
@@ -73,6 +32,9 @@ public class Employee {
     public boolean workingHrExceeded(){
         return hrsWorked >= TOT_WORKING_HRS_LIMIT;
     }
+
+    //------------------------------------------------------
+    //Getters
     public int getTotWorkingHrs(){
         return hrsWorked;
     }
@@ -80,7 +42,46 @@ public class Employee {
         return totDaysWorked;
     }
     public int getSalary(){
-        return salary();
+        return salary;
+    }
+    public int getFullDayHr(){
+        return FULL_DAY;
+    }
+    public int getPartTimeHr(){
+        return PART_TIME_HR;
+    }
+    public int getWagePerHr(){
+        return WAGE_PER_HR;
+    }
+    //------------------------------------------------------
+    
+    //------------------------------------------------------
+    //Setters
+    public void setSalary(int salary){
+        this.salary = salary;
+    }
+    public void setWorkingHrsLimit(int workHrsLimit){
+        this.TOT_WORKING_HRS_LIMIT = workHrsLimit;
+    }
+    
+    public void setHoursWorked(int hrs){
+        hrsWorked += hrs;
+    }
+    public void increaseDaysWorked(){
+        totDaysWorked++;
     }
 
+    public void setWorkingDaysLimit(int workingDaysLimit){
+        this.TOT_WORKDAYS_LIMIT = workingDaysLimit;
+    }
+    public void setPartTimeHr(int partTimeHr){
+        this.PART_TIME_HR = partTimeHr;
+    } 
+    public void setFullTimeHr(int fullTimeHr){
+        this.FULL_DAY = fullTimeHr;
+    }
+    public void setWagePerHr(int wagePerHr){
+        this.WAGE_PER_HR = wagePerHr;
+    }
+    //------------------------------------------------------
 }
