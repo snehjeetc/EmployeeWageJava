@@ -80,7 +80,7 @@ public class Employee {
         return totDaysWorked;
     }
     public int getSalary(){
-        return salary();
+        return salary;
     }
 
 }
