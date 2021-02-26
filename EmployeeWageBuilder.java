@@ -2,8 +2,9 @@ package com.employee;
 import java.util.Random;
 
 public class EmployeeWageBuilder implements EmployeeWageAPI{
+
 	public static final short IS_FULL_TIME = 1;
-	public static final short IS_PART_TIME = 2;
+    public static final short IS_PART_TIME = 2;
     public static final short IS_PRESENT = 1;
 
     private int capacity;
@@ -105,6 +106,13 @@ public class EmployeeWageBuilder implements EmployeeWageAPI{
         return index == -1 || index == 0;
     }
 
+    public void printMonthlyWageOfEmployee(){
+        for(int i=0; i<index; i++){
+            System.out.println(companyNamesList[i] + ": " + 
+                    companyEmployeesList[i].getSalary());
+        }
+    }
+
     @Override
 	public void calculateDailyWage(Employee emp) {
         Random rand = new Random();
@@ -139,13 +147,6 @@ public class EmployeeWageBuilder implements EmployeeWageAPI{
         }
     }
     
-    public void printMonthlyWageOfEmployee(){
-        for(int i=0; i<index; i++){
-            System.out.println(companyNamesList[i] + ": " + 
-                    companyEmployeesList[i].getSalary());
-        }
-    }
-
     @Override
     public int getTotalWage(String company){
         int atIndex = search(company);
