@@ -1,19 +1,25 @@
 package com.employee;
 import java.util.Random;
 
-public class EmployeeWageBuilder {
+public class EmployeeWageBuilder implements EmployeeWageAPI{
 	public static final short IS_FULL_TIME = 1;
 	public static final short IS_PART_TIME = 2;
     public static final short IS_PRESENT = 1;
 
-    private static int capacity = 0;
+    private int capacity;
     //index-> represents the next position where we have to place our object
-    private static int index = -1;
-    //index=-1 -> represents the list hasn't been created yet
-    private static String[] companyNamesList;
-    private static Employee[] companyEmployeesList; 
+    private int index;
+    private String[] companyNamesList;
+    private Employee[] companyEmployeesList; 
+
+    public EmployeeWageBuilder(){
+        capacity = 5;
+        index =0;
+        companyNamesList = new String[capacity];
+        companyEmployeesList = new Employee[capacity];
+    }
     
-    public static void reserve(int requiredSize){
+    public void reserve(int requiredSize){
         if(capacity == 0){
             capacity = requiredSize;
             index++;
@@ -41,7 +47,7 @@ public class EmployeeWageBuilder {
         }
     }
 
-    public static void addCompany(String name, Employee emp){
+    public void addCompany(String name, Employee emp){
         if(index == -1)             //No array has been created yet
             reserve(5);
         else if(index == capacity)
@@ -51,7 +57,7 @@ public class EmployeeWageBuilder {
         companyEmployeesList[index] = emp;
         index++;
     }
-    public static int checkAttendance() {
+    public int checkAttendance() {
 		short empCheck = (short)((Math.random() * 10)%2);
 		if(empCheck == IS_PRESENT)
 			return 1;
@@ -59,7 +65,7 @@ public class EmployeeWageBuilder {
 			return 0;
 	}
 
-    public static void remove(String name){
+    public void remove(String name){
         if(index == -1){
             System.out.println("Employee Wage Builder is empty");
             return;
@@ -76,7 +82,7 @@ public class EmployeeWageBuilder {
         index--;
     }
     
-    public static int search(String name){
+    public int search(String name){
         if(isEmpty()){
             return -1;
         }
@@ -87,7 +93,7 @@ public class EmployeeWageBuilder {
         return -1;
     }
 
-    public static void printCompany(String name){
+    public void printCompany(String name){
         int atIndex = search(name);
         if( atIndex == -1)
             return;
@@ -95,11 +101,12 @@ public class EmployeeWageBuilder {
                 companyEmployeesList[atIndex].getSalary());
     }
 
-    public static boolean isEmpty(){
+    public boolean isEmpty(){
         return index == -1 || index == 0;
     }
 
-	public static void calculateDailyWage(Employee emp) {
+    @Override
+	public void calculateDailyWage(Employee emp) {
         Random rand = new Random();
 		int empCheck= checkAttendance();
         if(empCheck == IS_PRESENT){
@@ -122,7 +129,9 @@ public class EmployeeWageBuilder {
 		        }
         }
     }
-    public static void calculateMonthlyWage(){
+
+    @Override
+    public void calculateMonthlyWage(){
         for(int i=0; i<index; i++){
         while(!companyEmployeesList[i].workingDayExceeded() && 
                 !companyEmployeesList[i].workingHrExceeded())    
@@ -130,10 +139,18 @@ public class EmployeeWageBuilder {
         }
     }
     
-    public static void printMonthlyWageOfEmployee(){
+    public void printMonthlyWageOfEmployee(){
         for(int i=0; i<index; i++){
             System.out.println(companyNamesList[i] + ": " + 
                     companyEmployeesList[i].getSalary());
         }
+    }
+
+    @Override
+    public int getTotalWage(String company){
+        int atIndex = search(company);
+        if(atIndex == -1)
+            return -1;
+        return companyEmployeesList[atIndex].getSalary();
     }
 }

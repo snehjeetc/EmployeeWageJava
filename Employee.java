@@ -1,6 +1,6 @@
 package com.employee;
 
-public class Employee{	
+public class Employee {	
 	private int WAGE_PER_HR;
 	private int FULL_DAY;
 	private int PART_TIME_HR;
@@ -12,7 +12,6 @@ public class Employee{
 	private int totDaysWorked;
     private int salary;
     
-	
 	Employee(int wagePerHr, int FullDayHr, int PartTimeHr, int workDaysLimit, 
             int workHrsLimit){
 		    hrsWorked = 0;

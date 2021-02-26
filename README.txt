@@ -4,17 +4,14 @@ and calculates the salary based on whether he works
 part time or full time.
 
 /------------------------------------------------------
-Version: CV-A
+Version: API
         (using Collection Variable Array)
-            Implemented Array in Employee Wage Builder 
-            Class
-            Features added
-            1.) Calculates monthly Salary of different 
-                company employee.
-            2.) Searches and print the monthly salary 
-                of any company employee. 
-            3.) Ability to add any employee at the runtime.
-            4.) Ability to remove any employee at the runtime.
+        (using interface to build Employee Wage Builder)
+
+        Searches the list using linear search ( O(N) 
+        time complexity).
+        [can be improved using HasMap ( O(1) time 
+        complexity) ].
 /------------------------------------------------------
 1.) Compiling in terminal :
 	javac -d . *.java 
