@@ -37,7 +37,17 @@ public class EmpMain {
         
 		System.out.println("Printing All company monthly wage:");
 		eb.printMonthlyWageOfEmployee();
+		
+		eb.printTheEmployeeList();
+
+        //--------------------------------------------------------------------
+        //Adding a company
+		name = "Left";
+		Employee emp = new Employee(100, 6, 3, 16, 80);
+		eb.addCompany(name, emp);
+		eb.calculateMonthlyWage();
+		eb.printMonthlyWageOfEmployee();
+        //--------------------------------------------------------------------
 	}
 
 }
-

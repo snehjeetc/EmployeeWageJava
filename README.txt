@@ -4,14 +4,15 @@ and calculates the salary based on whether he works
 part time or full time.
 
 /------------------------------------------------------
-Version: API
-        (using Collection Variable Array)
+Version: API-Map
+        (using Collection Variable: LinkedList and HashMap)
         (using interface to build Employee Wage Builder)
+        
+        New features
+        1.) Add new company names after calculating
+            monthly wage of some companies.
+        2.) Reset a company employee's salary to zero
 
-        Searches the list using linear search ( O(N) 
-        time complexity).
-        [can be improved using HasMap ( O(1) time 
-        complexity) ].
 /------------------------------------------------------
 1.) Compiling in terminal :
 	javac -d . *.java 

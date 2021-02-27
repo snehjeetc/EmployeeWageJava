@@ -1,62 +1,30 @@
 package com.employee;
-import java.util.Random;
+import java.util.*;
 
 public class EmployeeWageBuilder implements EmployeeWageAPI{
 
-	public static final short IS_FULL_TIME = 1;
-    public static final short IS_PART_TIME = 2;
-    public static final short IS_PRESENT = 1;
+	private static final short IS_FULL_TIME = 1;
+    private static final short IS_PART_TIME = 2;
+    private static final short IS_PRESENT = 1;
+    private static final Boolean marked = true;
 
-    private int capacity;
-    //index-> represents the next position where we have to place our object
-    private int index;
-    private String[] companyNamesList;
-    private Employee[] companyEmployeesList; 
+    private LinkedList<Employee> companyEmployeeList; 
+    private Map<String, Employee> companyToEmployee;
+    private Map<String, Boolean> markCompanyDone;
+
 
     public EmployeeWageBuilder(){
-        capacity = 5;
-        index =0;
-        companyNamesList = new String[capacity];
-        companyEmployeesList = new Employee[capacity];
+        companyEmployeeList = new LinkedList<Employee>();
+        companyToEmployee = new HashMap<String, Employee>();
+        markCompanyDone = new HashMap<String, Boolean>();
     }
     
-    public void reserve(int requiredSize){
-        if(capacity == 0){
-            capacity = requiredSize;
-            index++;
-            companyNamesList = new String[capacity];
-            companyEmployeesList = new Employee[capacity];
-            return;
-        }
-        else{
-            String[] tempNames = new String[capacity]; 
-            Employee[] tempEmp = new Employee[capacity];
-            
-            for(int i=0; i<index; i++){
-                tempNames[i] = companyNamesList[i];
-                tempEmp[i] = companyEmployeesList[i];
-            }
-
-            capacity += requiredSize;
-            String[] companyNamesList = new String[capacity];
-            Employee[] companyEmployeesList = new Employee[capacity];
-
-            for(int i=0; i<index; i++){
-                companyNamesList[i] = tempNames[i];
-                companyEmployeesList[i] = tempEmp[i];
-            }
-        }
-    }
-
     public void addCompany(String name, Employee emp){
-        if(index == -1)             //No array has been created yet
-            reserve(5);
-        else if(index == capacity)
-            reserve(2*capacity + 1);
-        
-        companyNamesList[index] = name;
-        companyEmployeesList[index] = emp;
-        index++;
+        if(!companyEmployeeList.add(emp)){
+            System.out.println("Failed to add.");
+        }
+        companyToEmployee.put(name, emp);
+        markCompanyDone.put(name, false);
     }
     public int checkAttendance() {
 		short empCheck = (short)((Math.random() * 10)%2);
@@ -67,50 +35,53 @@ public class EmployeeWageBuilder implements EmployeeWageAPI{
 	}
 
     public void remove(String name){
-        if(index == -1){
-            System.out.println("Employee Wage Builder is empty");
+        Employee emp = companyToEmployee.remove(name);
+        if( emp == null){
+            System.out.println(name + " not present!");
             return;
         }
-        int atIndex = search(name);
-        if(atIndex == -1){
-            System.out.println(name + " Employee not found!");
-            return;
-        }
-        for(int i = atIndex; i < index-1; i++){
-            companyNamesList[i] = companyNamesList[i+1];
-            companyEmployeesList[i] = companyEmployeesList[i+1];
-        }
-        index--;
+        companyEmployeeList.remove(emp);
+        markCompanyDone.remove(name);
     }
     
-    public int search(String name){
-        if(isEmpty()){
-            return -1;
-        }
-        for(int i=0; i<index; i++){
-            if(name.equals(companyNamesList[i]))
-                return i;
-        }
-        return -1;
+    public Employee search(String name){
+        return companyToEmployee.get(name);
     }
 
     public void printCompany(String name){
-        int atIndex = search(name);
-        if( atIndex == -1)
+        Employee emp = companyToEmployee.get(name);
+        if(emp == null){
+            System.out.println(name + " not present!");
             return;
-        System.out.println(name + ": " + 
-                companyEmployeesList[atIndex].getSalary());
+        }
+        System.out.println(name + ": " + emp.getSalary());
     }
 
     public boolean isEmpty(){
-        return index == -1 || index == 0;
+        return companyEmployeeList.size() == 0;
     }
 
     public void printMonthlyWageOfEmployee(){
-        for(int i=0; i<index; i++){
-            System.out.println(companyNamesList[i] + ": " + 
-                    companyEmployeesList[i].getSalary());
+        for(Map.Entry<String, Employee> entry : companyToEmployee.entrySet()){
+            System.out.println(entry.getKey() + ": " + entry.getValue().getSalary());
         }
+    }
+
+    public void reset(){
+        for(Map.Entry<String, Employee> entry : companyToEmployee.entrySet()){
+            entry.getValue().setSalary(0);
+            markCompanyDone.put(entry.getKey(), false);
+        }
+    }
+
+    public void reset(String companyName){
+        Employee emp = companyToEmployee.get(companyName);
+        if(emp == null){
+            System.out.println(companyName + " not present!");
+            return;
+        }
+        emp.setSalary(0);
+        markCompanyDone.put(companyName, false);
     }
 
     @Override
@@ -140,18 +111,29 @@ public class EmployeeWageBuilder implements EmployeeWageAPI{
 
     @Override
     public void calculateMonthlyWage(){
-        for(int i=0; i<index; i++){
-        while(!companyEmployeesList[i].workingDayExceeded() && 
-                !companyEmployeesList[i].workingHrExceeded())    
-            calculateDailyWage(companyEmployeesList[i]);
+        for(Map.Entry<String, Employee> entry : companyToEmployee.entrySet()){
+        if(!markCompanyDone.get(entry.getKey()).equals(marked)){
+            Employee emp = entry.getValue();
+            
+            while(!emp.workingDayExceeded() && !emp.workingHrExceeded()){  
+                    calculateDailyWage(emp);
+                }
+            markCompanyDone.put(entry.getKey(), true);
+        	}
         }
     }
     
     @Override
     public int getTotalWage(String company){
-        int atIndex = search(company);
-        if(atIndex == -1)
+        Employee emp = companyToEmployee.get(company);
+        if(emp == null)
             return -1;
-        return companyEmployeesList[atIndex].getSalary();
+        return emp.getSalary();
+    }
+    public void printTheEmployeeList() {
+    	ListIterator<Employee> listIterator = companyEmployeeList.listIterator();
+    	while(listIterator.hasNext()) {
+    		System.out.println(listIterator.next());
+    	}
     }
 }

@@ -1,6 +1,6 @@
 package com.employee;
 
-public class Employee {	
+public class Employee{	
 	private int WAGE_PER_HR;
 	private int FULL_DAY;
 	private int PART_TIME_HR;
@@ -12,6 +12,7 @@ public class Employee {
 	private int totDaysWorked;
     private int salary;
     
+	
 	Employee(int wagePerHr, int FullDayHr, int PartTimeHr, int workDaysLimit, 
             int workHrsLimit){
 		    hrsWorked = 0;
@@ -49,8 +50,8 @@ public class Employee {
     public int getPartTimeHr(){
         return PART_TIME_HR;
     }
-    public int getWagePerHr(){
-        return WAGE_PER_HR;
+    public int getWagePerHr() {
+    	return WAGE_PER_HR;
     }
     //------------------------------------------------------
     
@@ -83,4 +84,11 @@ public class Employee {
         this.WAGE_PER_HR = wagePerHr;
     }
     //------------------------------------------------------
+    
+    @Override
+    public String toString() {
+    	return "Hours Worked: " + hrsWorked + " " + 
+    			"Days Worked: "	+ totDaysWorked+ " " + 
+    			"Salary: " + salary;
+    }
 }
