@@ -130,6 +130,7 @@ public class EmployeeWageBuilder implements EmployeeWageAPI{
             return -1;
         return emp.getSalary();
     }
+
     public void printTheEmployeeList() {
         ListIterator<Employee> listIterator = companyEmployeeList.listIterator();
         while(listIterator.hasNext()) {
