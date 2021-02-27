@@ -2,8 +2,8 @@ package com.employee;
 import java.util.*;
 
 public class EmployeeWageBuilder implements EmployeeWageAPI{
-
-	private static final short IS_FULL_TIME = 1;
+    
+    private static final short IS_FULL_TIME = 1;
     private static final short IS_PART_TIME = 2;
     private static final short IS_PRESENT = 1;
     private static final Boolean marked = true;
@@ -27,12 +27,12 @@ public class EmployeeWageBuilder implements EmployeeWageAPI{
         markCompanyDone.put(name, false);
     }
     public int checkAttendance() {
-		short empCheck = (short)((Math.random() * 10)%2);
-		if(empCheck == IS_PRESENT)
-			return 1;
-		else
-			return 0;
-	}
+        short empCheck = (short)((Math.random() * 10)%2);
+        if(empCheck == IS_PRESENT)
+            return 1;
+        else
+            return 0;
+    }
 
     public void remove(String name){
         Employee emp = companyToEmployee.remove(name);
@@ -85,27 +85,27 @@ public class EmployeeWageBuilder implements EmployeeWageAPI{
     }
 
     @Override
-	public void calculateDailyWage(Employee emp) {
+    public void calculateDailyWage(Employee emp) {
         Random rand = new Random();
-		int empCheck= checkAttendance();
+        int empCheck= checkAttendance();
         if(empCheck == IS_PRESENT){
             int jobType = rand.nextInt(2) + 1;
             int dailyPayment;
-		    switch(jobType) {
-		        case IS_FULL_TIME:	
-				        dailyPayment = emp.getFullDayHr() * emp.getWagePerHr();
+            switch(jobType) {
+                case IS_FULL_TIME:	
+                        dailyPayment = emp.getFullDayHr() * emp.getWagePerHr();
                         emp.setHoursWorked(emp.getFullDayHr());
                         emp.increaseDaysWorked();
                         emp.setSalary(emp.getSalary() + dailyPayment);
-				        break;
-		        case IS_PART_TIME:
-				        dailyPayment = emp.getPartTimeHr() *emp.getWagePerHr();
+                        break;
+                case IS_PART_TIME:
+                        dailyPayment = emp.getPartTimeHr() *emp.getWagePerHr();
                         emp.setHoursWorked(emp.getPartTimeHr());
                         emp.increaseDaysWorked();
                         emp.setSalary(emp.getSalary() + dailyPayment);
-				        break;
-		
-		        }
+                        break;
+        
+                }
         }
     }
 
@@ -119,7 +119,7 @@ public class EmployeeWageBuilder implements EmployeeWageAPI{
                     calculateDailyWage(emp);
                 }
             markCompanyDone.put(entry.getKey(), true);
-        	}
+            }
         }
     }
     
@@ -131,9 +131,9 @@ public class EmployeeWageBuilder implements EmployeeWageAPI{
         return emp.getSalary();
     }
     public void printTheEmployeeList() {
-    	ListIterator<Employee> listIterator = companyEmployeeList.listIterator();
-    	while(listIterator.hasNext()) {
-    		System.out.println(listIterator.next());
-    	}
+        ListIterator<Employee> listIterator = companyEmployeeList.listIterator();
+        while(listIterator.hasNext()) {
+            System.out.println(listIterator.next());
+        }
     }
 }
