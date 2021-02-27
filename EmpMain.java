@@ -23,29 +23,30 @@ public class EmpMain {
         //--------------------------------------------------------------------
 
         eb.calculateMonthlyWage();
-		System.out.println("Printing All company monthly wage:");
+        System.out.println("Printing All company monthly wage:");
         eb.printMonthlyWageOfEmployee();
 
         //Removing a company 
         String name = "ShopStop";
-		eb.printCompany(name);
-		System.out.println("Removing " + name);
-		eb.remove(name);
+        eb.printCompany(name);
+        System.out.println("Removing " + name);
+        eb.remove(name);
         System.out.println("Company name: " + name);
         eb.printCompany(name);
         //--------------------------------------------------------------------
         
-		System.out.println("Printing All company monthly wage:");
-		eb.printMonthlyWageOfEmployee();
-		eb.printTheEmployeeList();
+        System.out.println("Printing All company monthly wage:");
+        eb.printMonthlyWageOfEmployee();
+        eb.printTheEmployeeList();
 
         //--------------------------------------------------------------------
         //Adding a company
-		name = "Left";
-		Employee emp = new Employee(100, 6, 3, 16, 80);
-		eb.addCompany(name, emp);
-		eb.calculateMonthlyWage();
-		eb.printMonthlyWageOfEmployee();
+        
+        name = "Left";
+        Employee emp = new Employee(100, 6, 3, 16, 80);
+        eb.addCompany(name, emp);
+        eb.calculateMonthlyWage();
+        eb.printMonthlyWageOfEmployee();
         //--------------------------------------------------------------------
 	}
 }

@@ -16,14 +16,14 @@ public class Employee{
     Employee(int wagePerHr, int FullDayHr, int PartTimeHr, int workDaysLimit, 
             int workHrsLimit){
         hrsWorked = 0;
-		totDaysWorked = 0;
+        totDaysWorked = 0;
         salary = 0;
         WAGE_PER_HR = wagePerHr;
         FULL_DAY = FullDayHr;
         PART_TIME_HR = PartTimeHr;
         TOT_WORKDAYS_LIMIT = workDaysLimit;
         TOT_WORKING_HRS_LIMIT = workHrsLimit;
-	}
+    }
         
     public boolean workingDayExceeded(){
         return totDaysWorked >= TOT_WORKDAYS_LIMIT;  
