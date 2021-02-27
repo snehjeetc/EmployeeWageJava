@@ -4,6 +4,7 @@ import com.employee.Employee;
 public class EmpMain {
 
 	public static void main(String[] args) {
+
         //Taking dummy 4 Employee Inputs
         //--------------------------------------------------------------------
         int wagePerHr[] = {200, 300, 400, 150};
@@ -23,7 +24,7 @@ public class EmpMain {
 
         eb.calculateMonthlyWage();
 		System.out.println("Printing All company monthly wage:");
-		eb.printMonthlyWageOfEmployee();
+        eb.printMonthlyWageOfEmployee();
 
         //Removing a company 
         String name = "ShopStop";
@@ -34,10 +35,8 @@ public class EmpMain {
         eb.printCompany(name);
         //--------------------------------------------------------------------
         
-        
 		System.out.println("Printing All company monthly wage:");
 		eb.printMonthlyWageOfEmployee();
-		
 		eb.printTheEmployeeList();
 
         //--------------------------------------------------------------------
@@ -49,5 +48,4 @@ public class EmpMain {
 		eb.printMonthlyWageOfEmployee();
         //--------------------------------------------------------------------
 	}
-
 }
