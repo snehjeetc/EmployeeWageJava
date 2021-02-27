@@ -2,15 +2,15 @@ package com.employee;
 
 public class Employee{	
 
-	private int WAGE_PER_HR;
-	private int FULL_DAY;
-	private int PART_TIME_HR;
+    private int WAGE_PER_HR;
+    private int FULL_DAY;
+    private int PART_TIME_HR;
     
-	private int TOT_WORKDAYS_LIMIT;
-	private int TOT_WORKING_HRS_LIMIT;
+    private int TOT_WORKDAYS_LIMIT;
+    private int TOT_WORKING_HRS_LIMIT;
 
-	private int hrsWorked;
-	private int totDaysWorked;
+    private int hrsWorked;
+    private int totDaysWorked;
     private int salary;
 
     Employee(int wagePerHr, int FullDayHr, int PartTimeHr, int workDaysLimit, 
