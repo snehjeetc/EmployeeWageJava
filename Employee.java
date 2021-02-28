@@ -1,4 +1,5 @@
 package com.employee;
+import java.util.*;
 
 public class Employee{	
 
@@ -12,6 +13,7 @@ public class Employee{
     private int hrsWorked;
     private int totDaysWorked;
     private int salary;
+    private LinkedList<Integer> dailyPayment;
 
     Employee(int wagePerHr, int FullDayHr, int PartTimeHr, int workDaysLimit, 
             int workHrsLimit){
@@ -23,6 +25,7 @@ public class Employee{
         PART_TIME_HR = PartTimeHr;
         TOT_WORKDAYS_LIMIT = workDaysLimit;
         TOT_WORKING_HRS_LIMIT = workHrsLimit;
+        dailyPayment = new LinkedList<Integer>();
     }
         
     public boolean workingDayExceeded(){
@@ -88,7 +91,20 @@ public class Employee{
     public void setWagePerHr(int wagePerHr){
         this.WAGE_PER_HR = wagePerHr;
     }
+
     //------------------------------------------------------
+
+    public void addToDailyPaymentList(int dailyP){
+        this.dailyPayment.add(dailyP);
+    }
+
+    public void resetDailyPayment(){
+        dailyPayment = new LinkedList<Integer>();
+    }
+
+    public void printDailyPayment(){
+        System.out.println(dailyPayment);
+    }
     
     @Override
     public String toString() {

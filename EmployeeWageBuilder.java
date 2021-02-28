@@ -54,7 +54,10 @@ public class EmployeeWageBuilder implements EmployeeWageAPI{
             System.out.println(name + " not present!");
             return;
         }
-        System.out.println(name + ": " + emp.getSalary());
+        System.out.println(name + ":");
+        System.out.println("Monthly Wage: " + emp.getSalary());
+        System.out.println("Daily payment list: ");
+        emp.printDailyPayment();
     }
 
     public boolean isEmpty(){
@@ -71,6 +74,7 @@ public class EmployeeWageBuilder implements EmployeeWageAPI{
         for(Map.Entry<String, Employee> entry : companyToEmployee.entrySet()){
             entry.getValue().setSalary(0);
             markCompanyDone.put(entry.getKey(), false);
+            entry.getValue().resetDailyPayment();
         }
     }
 
@@ -82,6 +86,7 @@ public class EmployeeWageBuilder implements EmployeeWageAPI{
         }
         emp.setSalary(0);
         markCompanyDone.put(companyName, false);
+        emp.resetDailyPayment();
     }
 
     @Override
@@ -94,18 +99,24 @@ public class EmployeeWageBuilder implements EmployeeWageAPI{
             switch(jobType) {
                 case IS_FULL_TIME:	
                         dailyPayment = emp.getFullDayHr() * emp.getWagePerHr();
+                        emp.addToDailyPaymentList(dailyPayment);
                         emp.setHoursWorked(emp.getFullDayHr());
                         emp.increaseDaysWorked();
                         emp.setSalary(emp.getSalary() + dailyPayment);
                         break;
                 case IS_PART_TIME:
                         dailyPayment = emp.getPartTimeHr() *emp.getWagePerHr();
+                        emp.addToDailyPaymentList(dailyPayment);
                         emp.setHoursWorked(emp.getPartTimeHr());
                         emp.increaseDaysWorked();
                         emp.setSalary(emp.getSalary() + dailyPayment);
                         break;
         
                 }
+        }
+        else{
+            int dailyPayment = 0;
+            emp.addToDailyPaymentList(dailyPayment);
         }
     }
 
